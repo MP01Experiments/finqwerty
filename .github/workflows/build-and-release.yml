@@ -54,7 +54,7 @@ jobs:
       with:
         files: finqwerty/build/outputs/apk/release/finqwerty-release.apk
         name: Release ${{ github.sha }}
-        tag_name: ${{ github.sha }}
+        tag_name: ${{ github.sha::0:7 }}
         body: |
           Automated release build for commit ${{ github.sha }}
         draft: false
