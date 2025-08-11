@@ -49,14 +49,18 @@ jobs:
         name: finqwerty-release
         path: finqwerty/build/outputs/apk/release/finqwerty-release.apk
 
+    - name: Set short SHA
+      id: vars
+      run: echo "short_sha=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_OUTPUT
+
     - name: Create Release
       uses: softprops/action-gh-release@v2
       with:
         files: finqwerty/build/outputs/apk/release/finqwerty-release.apk
-        name: Release ${{ github.sha }}
-        tag_name: ${{ github.sha::0:7 }}
+        name: Release ${{ steps.vars.outputs.short_sha }}
+        tag_name: ${{ steps.vars.outputs.short_sha }}
         body: |
-          Automated release build for commit ${{ github.sha }}
+          Automated release build for commit ${{ steps.vars.outputs.short_sha }}
         draft: false
         prerelease: false
       env:
