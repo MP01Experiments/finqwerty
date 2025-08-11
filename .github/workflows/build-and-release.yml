@@ -50,7 +50,7 @@ jobs:
         path: finqwerty/build/outputs/apk/release/finqwerty-release.apk
 
     - name: Create Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         files: finqwerty/build/outputs/apk/release/finqwerty-release.apk
         name: Release ${{ github.sha }}
